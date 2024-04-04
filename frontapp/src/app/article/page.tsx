@@ -18,7 +18,8 @@ export default function Article() {
   const getArticles = async () => {
     const res = await fetch("http://localhost:8010/api/v1/articles",{method:"GET"}).then(res => res.json())
     const articles = await res.data.articles;
-    setArticles(res.data.articles)
+    setArticles(res.data.articles);
+    return;
   };
 
   useEffect( () => {
@@ -43,6 +44,9 @@ export default function Article() {
             ))
           }
         </div>
+      </div>
+      <div className="mt-5">
+        <Link href="/article/create" className="btn float-end"> 생성 </Link>  
       </div>
     </main>
   );

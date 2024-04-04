@@ -14,7 +14,7 @@ public class RsData<T> {
     private String msg;
     private  T data;
     private Boolean isSuccess;
-    private Boolean isFalse;
+    private Boolean isFail;
 
     public static <T> RsData<T> of(String resultCode, String msg, T data){
 

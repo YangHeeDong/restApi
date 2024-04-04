@@ -5,15 +5,14 @@ import com.example.restApi.domain.article.service.ArticleService;
 import com.example.restApi.global.rsData.RsData;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/articles")
@@ -43,9 +42,9 @@ public class ApiV1ArticleController {
     @Getter
     public static class ArticleRes{
 
-        private Article articles;
-        ArticleRes(Article articles){
-            this.articles = articles;
+        private Article article;
+        ArticleRes(Article article){
+            this.article = article;
         }
     }
 
@@ -55,7 +54,7 @@ public class ApiV1ArticleController {
 
         RsData result = articleService.findById(id);
 
-        if(result.getIsFalse()) return result;
+        if(result.getIsFail()) return result;
 
         return RsData.of("S-1","조회 완료",new ArticleRes((Article) result.getData()));
 
@@ -102,7 +101,7 @@ public class ApiV1ArticleController {
     @Getter
     public static class ArticleEditReq{
 
-        @NotBlank(message = "유효하지 않은 접근")
+        @NotNull(message = "유효하지 않은 접근")
         private Long id;
 
         @NotBlank(message = "제목은 필수")
@@ -127,7 +126,7 @@ public class ApiV1ArticleController {
 
         RsData<Article> result = articleService.update(req);
 
-        if(result.getIsFalse()){
+        if(result.getIsFail()){
             return RsData.of(result.getResultCode(), result.getMsg());
         }
 

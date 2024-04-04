@@ -63,7 +63,7 @@ public class ArticleService {
                         article -> {
                             Article updateArticle = article.toBuilder().title(req.getTitle()).content(req.getContent()).build();
                             articleRepository.save(updateArticle);
-                            return RsData.of("S-3","삭제완료",updateArticle);
+                            return RsData.of("S-3","수정 완료",updateArticle);
                         }
                 )
                 .orElseGet(
