@@ -26,7 +26,7 @@ public class ApiV1ArticleController {
     @Getter
     @AllArgsConstructor
     public static class ArticlesRes{
-        private final List<Article> articles;
+        private List<Article> articles;
 
     }
 

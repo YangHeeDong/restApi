@@ -10,6 +10,7 @@ spring:
       produce-partial-output-while-processing: false
   profiles:
     active: dev
+    include: secret
   datasource:
     driver-class-name: org.h2.Driver
   jpa:
