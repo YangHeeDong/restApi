@@ -72,8 +72,6 @@ class RestApiApplicationTests {
 
 		String accessToken = jwtProvider.genToken(claims,60);
 
-		System.out.println(accessToken);
-
 		assertThat(accessToken).isNotNull();
 	}
 
@@ -88,8 +86,6 @@ class RestApiApplicationTests {
 
 		String accessToken = jwtProvider.genToken(claims,-1);
 
-		System.out.println(accessToken);
-
 		assertThat(jwtProvider.verify(accessToken)).isFalse();
 	}
 
@@ -102,14 +98,11 @@ class RestApiApplicationTests {
 		claims.put("id",30L);
 		claims.put("username","홍길동");
 
-		String accessToken = jwtProvider.genToken(claims,60*60*365);
+		String accessToken = jwtProvider.genToken(claims,60*60*24*365);
 
 		assertThat(jwtProvider.verify(accessToken)).isTrue();
 
 		Map<String, Object> claimsFromToken = jwtProvider.getClaims(accessToken);
-
-		System.out.println("Token Claim : " + claimsFromToken);
-
 
 	}
 

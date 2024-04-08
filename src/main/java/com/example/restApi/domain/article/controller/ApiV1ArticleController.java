@@ -6,9 +6,7 @@ import com.example.restApi.global.rsData.RsData;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +29,6 @@ public class ApiV1ArticleController {
     }
 
     @GetMapping("")
-    @ResponseBody
     public RsData<ArticlesRes> getArticles(){
 
         return RsData.of("S-1","조회 완료",new ArticlesRes(articleService.findAll()));
@@ -49,7 +46,6 @@ public class ApiV1ArticleController {
     }
 
     @GetMapping("/{id}")
-    @ResponseBody
     public RsData<ArticleRes> getArticle(@PathVariable(value = "id")Long id){
 
         RsData result = articleService.findById(id);
@@ -62,6 +58,7 @@ public class ApiV1ArticleController {
 
     // 생성
     @Getter
+    @Builder
     public static class ArticleSaveReq{
 
         @NotBlank(message = "제목은 필수")
@@ -78,20 +75,18 @@ public class ApiV1ArticleController {
     }
 
     @PostMapping("")
-    @ResponseBody
     public RsData<ArticleSaveRes> save(@Valid @RequestBody ArticleSaveReq req, BindingResult br){
 
         if(br.hasErrors()){
             return RsData.of("F-1","유효하지 않은 입력", null);
         }
 
-        return RsData.of("S-2","저장 완료",new ArticleSaveRes(articleService.save(req)));
+        return RsData.of("S-2","저장 완료",new ArticleSaveRes(articleService.save(null, req)));
     }
 
 
     // 삭제
     @DeleteMapping("/{id}")
-    @ResponseBody
     public RsData delete(@PathVariable(value = "id")Long id){
 
         return articleService.delete(id);
@@ -117,7 +112,6 @@ public class ApiV1ArticleController {
         private Article article;
     }
     @PatchMapping("")
-    @ResponseBody
     public RsData<ArticleEditRes> update(@Valid @RequestBody ArticleEditReq req, BindingResult br){
 
         if(br.hasErrors()){

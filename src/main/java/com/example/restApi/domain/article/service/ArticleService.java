@@ -3,6 +3,7 @@ package com.example.restApi.domain.article.service;
 import com.example.restApi.domain.article.controller.ApiV1ArticleController;
 import com.example.restApi.domain.article.entity.Article;
 import com.example.restApi.domain.article.repository.ArticleRepository;
+import com.example.restApi.domain.member.entity.Member;
 import com.example.restApi.global.rsData.RsData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,9 +35,9 @@ public class ArticleService {
 
     }
 
-    public Article save(ApiV1ArticleController.ArticleSaveReq req) {
+    public Article save(Member member, ApiV1ArticleController.ArticleSaveReq req) {
 
-        Article article = Article.builder().title(req.getTitle()).content(req.getContent()).build();
+        Article article = Article.builder().title(req.getTitle()).content(req.getContent()).author(member).build();
         articleRepository.save(article);
 
         return article;
