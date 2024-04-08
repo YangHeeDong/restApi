@@ -3,7 +3,6 @@ package com.example.restApi.global.rsData;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.http.HttpStatusCode;
 
 @Getter
 @AllArgsConstructor

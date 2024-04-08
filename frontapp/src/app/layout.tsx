@@ -22,6 +22,7 @@ export default function RootLayout({
         <nav>
           <Link href="/">홈</Link>
           <Link href="/article">게시판</Link>
+          <Link href="/member/login">로그인</Link>
         </nav>
         {children}
       </body>
