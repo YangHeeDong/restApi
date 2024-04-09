@@ -11,11 +11,17 @@ export default function Detail() {
   const [article, setArticle] = useState({id:"",title:"",content:"",createDate:"",modifiedDate:""});
   
   const getArticleById = async () => {
-    const result = await fetch(`http://localhost:8010/api/v1/articles/${id}`,{method:"GET"}).then(res => res.json())
+    const result = await fetch(`http://localhost:8010/api/v1/articles/${id}`,
+    {
+      method:"GET",
+      credentials: 'include' // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
+      
+    }).then(res => res.json())
 
-    if( await result.isFail){
+    if( result.isFail ){
       router.back();
     }
+    console.log(result)
     setArticle(result.data.article);
   }
 

@@ -16,7 +16,11 @@ export default function Article() {
   const [articles, setArticles] = useState<Article[]>([]);
 
   const getArticles = async () => {
-    const res = await fetch("http://localhost:8010/api/v1/articles",{method:"GET"}).then(res => res.json())
+    const res = await fetch("http://localhost:8010/api/v1/articles",{
+      method:"GET",
+      credentials: 'include', // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
+      headers:{'Content-Type':"application/json"}
+    }).then(res => res.json())
     const articles = await res.data.articles;
     setArticles(res.data.articles);
     return;

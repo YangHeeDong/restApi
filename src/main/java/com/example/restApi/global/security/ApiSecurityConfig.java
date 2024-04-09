@@ -24,6 +24,7 @@ public class ApiSecurityConfig {
                         authorizeHttpRequests ->
                                 authorizeHttpRequests
                                         .requestMatchers(HttpMethod.GET,"/api/*/articles").permitAll()
+                                        .requestMatchers("/api/*/members/logout").permitAll() // 로그아웃은 누구나 가능
                                         .requestMatchers(HttpMethod.GET,"/api/*/articles/*").permitAll()
                                         .requestMatchers("/api/*/members/login").permitAll()
                                         .anyRequest().authenticated()

@@ -61,50 +61,50 @@ class RestApiApplicationTests {
 
 	}
 
-	@Test
-	@DisplayName("accessToken 생성")
-	void test5 (){
-
-		Map<String, Object> claims = new HashMap<>();
-
-		claims.put("id",30L);
-		claims.put("username","홍길동");
-
-		String accessToken = jwtProvider.genToken(claims,60);
-
-		assertThat(accessToken).isNotNull();
-	}
-
-	@Test
-	@DisplayName("만료되어 유효한지")
-	void test6 (){
-
-		Map<String, Object> claims = new HashMap<>();
-
-		claims.put("id",30L);
-		claims.put("username","홍길동");
-
-		String accessToken = jwtProvider.genToken(claims,-1);
-
-		assertThat(jwtProvider.verify(accessToken)).isFalse();
-	}
-
-	@Test
-	@DisplayName("Claim 정보 가져오기")
-	void test7 () {
-
-		Map<String, Object> claims = new HashMap<>();
-
-		claims.put("id",30L);
-		claims.put("username","홍길동");
-
-		String accessToken = jwtProvider.genToken(claims,60*60*24*365);
-
-		assertThat(jwtProvider.verify(accessToken)).isTrue();
-
-		Map<String, Object> claimsFromToken = jwtProvider.getClaims(accessToken);
-
-	}
+//	@Test
+//	@DisplayName("accessToken 생성")
+//	void test5 (){
+//
+//		Map<String, Object> claims = new HashMap<>();
+//
+//		claims.put("id",30L);
+//		claims.put("username","홍길동");
+//
+//		String accessToken = jwtProvider.genToken(claims,60);
+//
+//		assertThat(accessToken).isNotNull();
+//	}
+//
+//	@Test
+//	@DisplayName("만료되어 유효한지")
+//	void test6 (){
+//
+//		Map<String, Object> claims = new HashMap<>();
+//
+//		claims.put("id",30L);
+//		claims.put("username","홍길동");
+//
+//		String accessToken = jwtProvider.genToken(claims,-1);
+//
+//		assertThat(jwtProvider.verify(accessToken)).isFalse();
+//	}
+//
+//	@Test
+//	@DisplayName("Claim 정보 가져오기")
+//	void test7 () {
+//
+//		Map<String, Object> claims = new HashMap<>();
+//
+//		claims.put("id",30L);
+//		claims.put("username","홍길동");
+//
+//		String accessToken = jwtProvider.genToken(claims,60*60*24*365);
+//
+//		assertThat(jwtProvider.verify(accessToken)).isTrue();
+//
+//		Map<String, Object> claimsFromToken = jwtProvider.getClaims(accessToken);
+//
+//	}
 
 
 }

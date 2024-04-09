@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @Profile({"dev", "test"})
 public class NotProd {
+
     @Bean
     CommandLineRunner initData(ArticleService articleService, MemberService memberService, PasswordEncoder passwordEncoder) {
 
